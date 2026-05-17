@@ -44,12 +44,14 @@ SSMS ile çalıştıracaksanız dosyaları aşağıdaki sırayla çalıştırın
 
 ## ER Diyagramı
 
-Güncel SQL şemasına göre hazırlanmış ER diyagramı ve mevcut görselin kontrol notları için:
+Güncel SQL şemasına göre hazırlanmış doğru ER diyagramı:
 
+- [ER diyagramı](docs/assets/er-diagram.svg)
+- [ER diyagramı PNG önizleme](docs/assets/er-diagram.png)
+- [Diyagram kaynak dosyası](docs/er-diagram.mmd)
 - [ER diyagramı ve doğruluk notları](docs/ER_DIAGRAM.md)
-- [Mevcut ER diyagram görseli](docs/assets/er-diagram-draft.png)
 
-![ER diyagram taslağı](docs/assets/er-diagram-draft.png)
+![ER diyagramı](docs/assets/er-diagram.svg)
 
 ## Index Performans Görselleri
 

@@ -1,25 +1,6 @@
-# ER Diyagramı
-
-Bu doküman, `create.sql` dosyasındaki güncel SQL Server şemasına göre hazırlanmıştır. Yeni ve doğru ER diyagramı `docs/assets/er-diagram.svg` dosyasındadır. PNG önizleme `docs/assets/er-diagram.png` olarak eklenmiştir. Düzenlenebilir Mermaid kaynak dosyası `docs/er-diagram.mmd`, SVG üretici script ise `docs/scripts/generate-er-diagram.js` altında tutulur. `docs/assets/er-diagram-draft.png` dosyası eski çizim taslağı olarak saklanmıştır.
-
-![Güncel ER diyagramı](assets/er-diagram.svg)
-
-## Mevcut PNG Diyagram Kontrolü
-
-Mevcut ER diyagramı ana varlıkları doğru yakalıyor: `Personel`, `Turnuva`, `Müsabaka`, `Antrenman`, `Madalya`, `Ölçüm`, `Ülke`, `Şehir`, `Branş`, `Spor Dalı`, `Ay` ve `Yıl` var. Ancak SQL şemasına göre GitHub'da nihai diyagram olarak kullanmadan önce şu noktalar düzeltilmelidir:
-
-- `SporcuPuan` tablosu diyagramda yok.
-- `PersonelMusabaka` ara tablosu diyagramda açık bir varlık olarak görünmüyor; SQL'de personel-müsabaka ilişkisini bu tablo kuruyor.
-- `Salon` tablosunun `Turnuva`, `Ülke` ve `Şehir` ile ilişkileri daha net gösterilmeli.
-- `Madalya` tablosu sadece `MadalyaTuru` ile değil, `Personel`, `Müsabaka` ve `Branş` ile de ilişkili.
-- `Antrenman` tablosunda `sporcuId` ve `egitmenId` aynı `Personel` tablosuna iki ayrı rol ile bağlanıyor; diyagramda bu iki rol ayrılmalı.
-- `Olcum` tablosu `Personel` ve `Ay` ile ilişkilidir; diyagramda ölçümün ay bazlı tutulduğu netleşmeli.
-- `Ay` tablosu `Yil` tablosuna bağlıdır; ayrıca `Turnuva`, `Antrenman` ve `Olcum` tabloları `Ay` üzerinden zaman boyutuna bağlanır.
-- Bazı adlar SQL ile birebir aynı değil: `il` yerine `Sehir`, `kg/cm` yerine `kilo/boy`, `idGorev` yerine `gorevId` gibi.
-
-## Güncel Şema
-
-```mermaid
+---
+title: Milli Sporcu Yönetim ve Performans Takip Veritabanı ER Diyagramı
+---
 erDiagram
     ULKE {
         int ulkeId PK
@@ -72,7 +53,7 @@ erDiagram
 
     SPORCU_PUAN {
         int puanId PK
-        int personelId FK,UK
+        int personelId FK
         int mevcutPuan
     }
 
@@ -114,8 +95,8 @@ erDiagram
     }
 
     PERSONEL_MUSABAKA {
-        int personelId PK,FK
-        int musabakaId PK,FK
+        int personelId PK
+        int musabakaId PK
         int bitirmeSirasi
     }
 
@@ -160,9 +141,9 @@ erDiagram
 
     ULKE ||--o{ SEHIR : "icerir"
     ULKE ||--o{ PERSONEL : "uyruk"
-    SEHIR ||--o{ PERSONEL : "sehir"
+    SEHIR ||--o{ PERSONEL : "yasadigi_sehir"
     GOREV ||--o{ PERSONEL : "gorev"
-    KAN_GURUBU ||--o{ PERSONEL : "kan grubu"
+    KAN_GURUBU ||--o{ PERSONEL : "kan_grubu"
     SPOR_DALI ||--o{ BRANS : "icerir"
     BRANS ||--o{ PERSONEL : "brans"
     PERSONEL ||--o| SPORCU_PUAN : "puan"
@@ -173,8 +154,8 @@ erDiagram
     ULKE ||--o{ SALON : "ulke"
     SEHIR ||--o{ SALON : "sehir"
     TURNUVA ||--o{ MUSABAKA : "icerir"
-    SALON ||--o{ MUSABAKA : "ev sahipligi"
-    SPOR_DALI ||--o{ MUSABAKA : "spor dali"
+    SALON ||--o{ MUSABAKA : "ev_sahipligi"
+    SPOR_DALI ||--o{ MUSABAKA : "spor_dali"
 
     PERSONEL ||--o{ PERSONEL_MUSABAKA : "katilir"
     MUSABAKA ||--o{ PERSONEL_MUSABAKA : "katilim"
@@ -193,4 +174,3 @@ erDiagram
 
     PERSONEL ||--o{ OLCUM : "olculur"
     AY ||--o{ OLCUM : "donem"
-```
