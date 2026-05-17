@@ -1,6 +1,6 @@
 # ER Diyagramı
 
-Bu doküman, `create.sql` dosyasındaki güncel SQL Server şemasına göre hazırlanmıştır. Yeni ve doğru ER diyagramı `docs/assets/er-diagram.svg` dosyasındadır. PNG önizleme `docs/assets/er-diagram.png` olarak eklenmiştir. Düzenlenebilir Mermaid kaynak dosyası `docs/er-diagram.mmd`, SVG üretici script ise `docs/scripts/generate-er-diagram.js` altında tutulur. `docs/assets/er-diagram-draft.png` dosyası eski çizim taslağı olarak saklanmıştır.
+Bu doküman, `create.sql` dosyasındaki güncel SQL Server şemasına göre hazırlanmıştır. Yeni ve doğru ER diyagramı `docs/assets/er-diagram.svg` dosyasındadır. Düzenlenebilir Mermaid kaynak dosyası `docs/er-diagram.mmd`, SVG üretici script ise `docs/scripts/generate-er-diagram.js` altında tutulur.
 
 ![Güncel ER diyagramı](assets/er-diagram.svg)
 
